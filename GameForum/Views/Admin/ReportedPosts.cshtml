@@ -1,0 +1,38 @@
+﻿@model GameForum.Application.ViewModels.Posts.ListPostForListVm
+
+@{
+    ViewData["Title"] = "ReportedPosts";
+}
+
+<h1>Reported Posts</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Create Time
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Posts) {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Title,"CheckPost",(new {postId = item.Id }))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateTime)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,44 @@
+﻿@model GameForum.Application.ViewModels.Paragraphs.NewParagraphVm
+
+@{
+    ViewData["Title"] = "AddParagraph";
+}
+
+<h1>AddParagraph</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="AddParagraph">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Id" type="hidden" />
+            <input asp-for="PostId" type="hidden" value="@Model.PostId" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control container-fluid" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Text" class="control-label"></label>
+                <textarea asp-for="Text" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="AddParagraph" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-2">
+        @if (!Model.FirstParagraph)
+        {
+            <a class="btn btn-success" asp-action="Read" asp-controller="Blog"
+               asp-route-id="@Model.PostId">Save Post</a>
+        }
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

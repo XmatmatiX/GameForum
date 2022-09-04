@@ -1,0 +1,43 @@
+﻿@model GameForum.Application.ViewModels.MergedVm.NewPostWithGenresVm
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h4>NewPostVm</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Post.GenreId" class="control-label"></label>
+                <select asp-for="Post.GenreId" class="custom-select" asp-items="@(new SelectList(Model.Genres,"Id","Name"))"></select>
+                <span asp-validation-for="Post.GenreId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Post.Title" class="control-label"></label>
+                <input asp-for="Post.Title" class="form-control" />
+                <span asp-validation-for="Post.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Post.Description" class="control-label"></label>
+                <input asp-for="Post.Description" class="form-control" />
+                <span asp-validation-for="Post.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-info" asp-controller="Blog" asp-action="Index">Back to post list</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

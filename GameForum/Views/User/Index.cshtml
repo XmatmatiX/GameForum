@@ -1,0 +1,76 @@
+﻿@model GameForum.Application.ViewModels.Users.ListUserForListVm
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>User List</h1>
+<form asp-action="Index" method="post">
+    <div class="row">
+        <input type="text" asp-for="SearchString" name="searchString"  id="searchString" />
+        <input type="submit" value="Search" />
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    UserName
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Users)
+            {
+                <tr>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.UserName)*@
+                        @Html.ActionLink(item.UserName, "UserDetails", new { id = item.Id })
+                    </td>
+                    @*<td>
+                            @if (ViewData["UserId"].ToString() == item.Id)
+                            {
+                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                            }
+
+                        </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="row">
+        <table>
+            <tr>
+                @for (int i = 1; i <= Math.Ceiling(Model.Count/20.0f); i++)
+                {
+                    <td>
+                        @if (i == Model.CurrentPage)
+                        {
+                            <span class="btn">@i</span>
+                        }
+                        else
+                        {
+                            <a class="btn btn-info" href="javascript:PageClick(@i)">@i</a>
+                        }
+                    </td>
+                }
+            </tr>
+        </table>
+        <input type="hidden" id="page" name="Page" />
+    </div>
+</form>
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        function PageClick(index) {
+            document.getElementById("page").value = index;
+            document.forms[0].submit();
+        }
+    </script>
+}

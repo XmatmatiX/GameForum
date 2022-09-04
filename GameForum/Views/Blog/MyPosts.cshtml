@@ -1,0 +1,109 @@
+﻿@model GameForum.Application.ViewModels.Posts.ListUserPostForListVm
+
+@{
+    ViewData["Title"] = "MyPosts";
+}
+
+<h1>My Posts</h1>
+
+<form asp-action="MyPosts" method="post">
+
+    <div class="row">
+        <input type="text" asp-for="SearchString" name="searchString" id="searchString" />
+        <input type="submit" value="Search" />
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>
+                    Title
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    CreateTime
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PostList)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @if (item.IsBanned)
+                        {
+                            <p>Banned</p>
+                        }
+                        else
+                        {
+                            <p>Online</p>
+                        }
+                    </td>
+                    <td>
+                        @item.CreateTime.ToLongDateString()
+                    </td>
+                    <td>
+                        <a class="btn btn-success" asp-action="Read"
+                           asp-route-id="@item.Id">Read</a>
+                        @if (ViewBag.UserId == Model.UserId)
+                        {
+
+                            <a class="btn btn-warning" asp-action="EditPost"
+                               asp-route-postId="@item.Id">Edit</a>
+                        }
+                        @if (ViewBag.UserId == Model.UserId)
+                        {
+                            <a class="btn btn-danger" asp-action="DeletePost"
+                               asp-route-postId="@item.Id">Delete</a>
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="row">
+        <table>
+            <tr>
+                @for (int i = 1; i <= Math.Ceiling(Model.Count / 20.0f); i++)
+                {
+                    <td>
+                        @if (i == Model.CurrentPage)
+                        {
+                            <span class="btn">@i</span>
+                        }
+                        else
+                        {
+                            <a class="btn btn-info" href="javascript:PageCLick(@i)">@i</a>
+                        }
+                    </td>
+                }
+            </tr>
+        </table>
+        <input type="hidden" id="page" name="page" />
+        <input type="hidden" id="userId" name="UserId" value="@Model.UserId" />
+    </div>
+</form>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        function PageCLick(index) {
+            document.getElementById("page").value = index;
+            document.forms[0].submit();
+        }
+    </script>
+}

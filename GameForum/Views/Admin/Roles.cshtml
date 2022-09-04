@@ -1,0 +1,51 @@
+﻿@model GameForum.Application.ViewModels.Roles.ListRoleForListVm
+
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<h1>Roles</h1>
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="row">
+        <form asp-action="Roles" method="post">
+            <input type="text" name="newRole" id="newRole" />
+            <input type="submit" value="Add new role" />
+        </form>
+    </div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Roles)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a class="btn btn-info" asp-action="AddRole"
+                       asp-route-roleId="@item.Id">Attach User</a> |
+                    <a class="btn btn-warning" asp-action="DeleteUserRole"
+                       asp-route-roleId="@item.Id">Detach User</a> |
+                    <a class="btn btn-danger" asp-action="DeleteRole"
+                       asp-route-roleId="@item.Id">Delete Role</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

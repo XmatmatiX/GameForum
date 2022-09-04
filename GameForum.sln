@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameForum.Web", "GameForum\GameForum.Web.csproj", "{17611D53-2E22-4694-BE18-478268D00626}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{0995EC4B-DEA1-4168-B39E-9E109400DF7D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{180BD5D1-ABC8-46B0-AF4F-79765D272C59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{1A8E9BD3-5085-4895-904F-7F90FD73A3C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{AACAF32C-9346-4749-8B82-5258AF230CF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameForum.Domain", "GameForum.Domain\GameForum.Domain.csproj", "{817361B5-D370-4E71-B6D6-F73E55170BA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameForum.Application", "GameForum.Application\GameForum.Application.csproj", "{74A685A4-8C4A-405C-B200-3F751B6F3D11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameForum.Infrastructure", "GameForum.Infrastructure\GameForum.Infrastructure.csproj", "{842B97BC-98D5-41F9-B687-BEA4A6601E31}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17611D53-2E22-4694-BE18-478268D00626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17611D53-2E22-4694-BE18-478268D00626}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17611D53-2E22-4694-BE18-478268D00626}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17611D53-2E22-4694-BE18-478268D00626}.Release|Any CPU.Build.0 = Release|Any CPU
+		{817361B5-D370-4E71-B6D6-F73E55170BA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{817361B5-D370-4E71-B6D6-F73E55170BA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{817361B5-D370-4E71-B6D6-F73E55170BA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{817361B5-D370-4E71-B6D6-F73E55170BA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74A685A4-8C4A-405C-B200-3F751B6F3D11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74A685A4-8C4A-405C-B200-3F751B6F3D11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74A685A4-8C4A-405C-B200-3F751B6F3D11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74A685A4-8C4A-405C-B200-3F751B6F3D11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{842B97BC-98D5-41F9-B687-BEA4A6601E31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{842B97BC-98D5-41F9-B687-BEA4A6601E31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{842B97BC-98D5-41F9-B687-BEA4A6601E31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{842B97BC-98D5-41F9-B687-BEA4A6601E31}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{17611D53-2E22-4694-BE18-478268D00626} = {0995EC4B-DEA1-4168-B39E-9E109400DF7D}
+		{817361B5-D370-4E71-B6D6-F73E55170BA2} = {1A8E9BD3-5085-4895-904F-7F90FD73A3C5}
+		{74A685A4-8C4A-405C-B200-3F751B6F3D11} = {AACAF32C-9346-4749-8B82-5258AF230CF8}
+		{842B97BC-98D5-41F9-B687-BEA4A6601E31} = {180BD5D1-ABC8-46B0-AF4F-79765D272C59}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E558064E-98A9-4B03-90EC-8371DB6D2D3D}
+	EndGlobalSection
+EndGlobal

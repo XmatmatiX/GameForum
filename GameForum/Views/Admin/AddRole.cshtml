@@ -1,0 +1,74 @@
+﻿@model GameForum.Application.ViewModels.Users.ListRoleUserForListVm
+
+@{
+    ViewData["Title"] = "AddRole";
+}
+
+<h1>AddRole</h1>
+<form asp-action="AddRole" method="post">
+    <div class="row">
+        <input asp-for="SearchString" name="searchString" id="searchString" />
+        <input type="hidden" name="roleId" id="roleId" value="@Model.RoleId" />
+        <input type="submit" value="Search" />
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    UserName
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Users)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        <a class="btn btn-success text-white" asp-action="AttachRole" 
+                           asp-route-userID="@item.Id" asp-route-roleId="@Model.RoleId">Add Role</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="row">
+        <table>
+            <tr>
+                @for (int i = 1; i <= Math.Ceiling(Model.Count / 20.0f); i++)
+                {
+                    <td>
+                        @if (i == Model.CurrentPage)
+                        {
+                            <span class="btn">@i</span>
+                        }
+                        else
+                        {
+                            <a class="btn btn-info" href="javascript:PageCLick(@i)">@i</a>
+                        }
+                    </td>
+                }
+            </tr>
+        </table>
+        <input type="hidden" id="page" name="page" />
+    </div>
+</form>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        function PageCLick(index) {
+            document.getElementById("page").Value = index;
+            document.forms[0].submit();
+        }
+    </script>
+}

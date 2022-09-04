@@ -1,0 +1,32 @@
+﻿@model GameForum.Application.ViewModels.Posts.PostToReadVm
+
+@{
+    ViewData["Title"] = "CheckPost";
+}
+
+<h1 class="align-content-center">@Model.Title</h1>
+<h5>@Model.Genre.Name</h5>
+<h6>@Model.Author.UserName</h6>
+<div>
+    <hr />
+    <dl class="row">
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    @foreach (var item in Model.Paragraphs)
+    {
+        <h2 class="align-content-center">@item.Title</h2>
+        <br />
+        <p class="p-md-5">@item.Text</p>
+        <br />
+    }
+</div>
+
+<div class="row">
+    <a class="col-2 btn btn-danger text-white" asp-action="BanPost" asp-route-postId="@Model.Id" asp-route-ban="@true">Ban Post</a>
+    <a class="col-2 btn btn-info text-white" asp-action="BanPost" asp-route-postId="@Model.Id" asp-route-ban="@false">Check Post</a>
+</div>

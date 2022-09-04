@@ -1,0 +1,88 @@
+﻿@model GameForum.Application.ViewModels.Posts.ListPostForListVm
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<form asp-controller="Blog" asp-action="Index" method="post">
+<p>
+    <a class="btn btn-info" asp-controller="Add" asp-action="Index">Create New</a>
+</p>
+
+<div class="row">
+    <input type="text" asp-for="SearchString" name="searchString" id="searchString" />
+    <input type="submit" value="Search"/>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Genre
+            </th>
+            <th>
+                Created
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Posts)
+{
+        <tr>
+            <td>
+                @Html.ActionLink(item.Title,"Read", new {id = item.Id})
+                <br />
+                @Html.ActionLink(item.Author.UserName,"UserDetails", "User", new {id = item.Author.Id})
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre.Name)
+            </td>
+            <td>
+                @item.CreateTime.ToLongDateString()
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div class="row">
+    <table>
+        <tr>
+            @for (int i = 1; i <= Math.Ceiling(Model.Count/20.0f); i++)
+            {
+                <td>
+                    @if(i == Model.CurrentPage)
+                    {
+                        <span class="btn">@i</span>
+                    }
+                    else
+                    {
+                        <a class="btn btn-info" href="javascript:PageCLick(@i)">@i</a>
+                    }
+                </td>
+            }
+        </tr>
+    </table>
+    <input type="hidden" id="page" name="page" />
+</div>
+</form>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        function PageCLick(index) {
+            document.getElementById("page").value = index;
+            document.forms[0].submit();
+        }
+    </script>
+}

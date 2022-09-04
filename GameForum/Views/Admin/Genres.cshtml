@@ -1,0 +1,44 @@
+﻿@model IEnumerable<GameForum.Application.ViewModels.Genres.GenreForListVm>
+
+@{
+    ViewData["Title"] = "Genres";
+}
+
+<h1>Genres</h1>
+
+<form class="row" asp-action="AddGenre" method="post">
+    <input class="col-auto" type="text"  name="name" id="name"/>
+    <input type="submit" value="Add Genre" />
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a class="btn btn-info" asp-action="EditGenre" 
+                   asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-danger text-white" asp-action="DeleteGenre"
+                   asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

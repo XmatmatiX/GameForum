@@ -1,0 +1,52 @@
+﻿@model GameForum.Application.ViewModels.Posts.PostForUpdateVm
+
+@{
+    ViewData["Title"] = "EditPost";
+}
+
+<h1>EditPost</h1>
+
+<a class="btn btn-danger" asp-action="DeletePost"
+   asp-route-postId="@Model.Id">Delete Post</a>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditPost">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" class="form-control" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            @foreach (var item in Model.Paragraphs)
+            {
+                <div class="form-group">
+                    <h3>@item.Title</h3>
+                </div>
+                <div class="form-group">
+                    <p>@item.Text</p>
+                </div>
+                <div class="row">
+                    <a class="btn btn-warning" asp-action="EditParagraph"
+                       asp-route-paragraphId="@item.Id" asp-route-postId="@Model.Id">Edit</a> |
+                    <a class="btn btn-danger" asp-action="DeleteParagraph"
+                       asp-route-paragraphId="@item.Id" asp-route-postId="@Model.Id">Delete</a>
+
+                </div>
+                <br />
+            }
+            <div class="form-group row">
+                <a class="btn btn-info" asp-action="AddParagraph"
+                   asp-route-postId="@Model.Id">Add Paragraph</a>
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
